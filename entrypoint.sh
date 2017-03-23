@@ -7,7 +7,7 @@ PS_VERSION=prestashop_1.6.1.11.zip
 SITE_NAME=new.centroprofessionaleaudio.dev
 
 ## Apache
-#sed -i "s|\("^ServerName" * *\).*|\www.example.com|"
+a2enmod rewrite
 
 ## MySQL
 sed -Ei 's/bind-address\s+=\s+127.0.0.1/bind-address=0.0.0.0\nskip_name_resolve=ON/g' /etc/mysql/mysql.conf.d/mysqld.cnf && \
@@ -28,6 +28,8 @@ fi
 
 ## Set user:group to Apache www-data
 chown -R www-data:www-data /var/www/html/prestashop/
+## The following is necessary for working with the volume
+cd /var/www/html/ && usermod -u 1000 www-data
 
 VHOST_DIR_CONFIG="\n\
 \t<Directory \/var\/www\/html\/prestashop\/>\n\
