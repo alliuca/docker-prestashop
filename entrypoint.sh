@@ -6,7 +6,9 @@ cd /var/www/html
 
 if [ -d "prestashop" ]; then
 
-  echo "/prestashop dir exists, just start apache"
+  echo "/prestashop dir exists, just start apache and mysql"
+
+  /etc/init.d/mysql start
 
 else
 
